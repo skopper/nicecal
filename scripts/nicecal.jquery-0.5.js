@@ -1,9 +1,9 @@
 /*
 * NiceCal
-* Intructions: http://git...
+* Web: https://github.com/skopper/nicecal
 * By: Markus Solälv
 * Version: 0.5
-* Updated: November 19th, 2012
+* Updated: November 20th, 2012
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -31,19 +31,33 @@
 			this.append("<span id='month-text'></span>");
 			this.append("<span id='date-nbr'></span>");
 
+			//Set css on container
+			var containerCss = {
+				"background-image":"url('scripts/img/nicecal.png')",
+				"background-repeat":"no-repeat",
+				"background-position":"left top",
+				"height": "64px",
+				"width": "64px",
+				"text-align": "center",
+				"font-family": "'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif"
+			};
+			this.css(containerCss);
+
 			//Set css on placeholders
 			var nbrCssObj = {
 				'font-size': '43px',
 				'position': 'relative',
 				'top': '1px'
-		    }
+		    };
+
 		    var monthCssObj = {
 				'font-size': '10px',
 				'color': 'white',
 				'position': 'relative',
 				'top': '4px',
 				'display': 'block'
-		    }
+		    };
+
 			this.children('#date-nbr').css(nbrCssObj);
 			this.children('#month-text').css(monthCssObj);
 
@@ -54,16 +68,19 @@
 
 			return this;
 		},
+		//Method for setting date
 		setDay: function( date ) {
 			this.children('#date-nbr').html(date);
 		}, 
+		//Method for setting month (where january = 0, feb = 1 ... dec = 11)
 		setMonth: function( month ) {
 
 			this.children('#month-text').html(months[month]);
 		}
 
 	};
-	//It is fixed fucker
+	
+	//Method dispatcher
 	$.fn.nicecal = function( method ) {
 		// Method calling logic
 	    if ( methods[method] ) {
